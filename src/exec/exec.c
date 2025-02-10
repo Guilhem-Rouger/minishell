@@ -27,28 +27,28 @@ bool	exect_builtin(char **args, t_data *data)
 	return (FALSE);
 }
 
-bool	exec_all(char **args, t_data *data)
+bool	exec_all(t_token *token, t_data *data)
 {
 	int	code;
 
 	code = 0;
 	if (data->path[data->nb_path] != NULL)
-		code = execve(data->path[data->nb_path], args, env_to_tab(data->env));
+		code = execve(data->path[data->nb_path], token->arg, env_to_tab(data->env));
 	exit(code);
 }
 
-bool	exec_pipe(t_data *data, char ***tab)
+bool	exec_pipe(t_data *data, t_token *token)
 {
 	pid_t	pid;
 	int		i;
 	int		fd;
 	int		status;
+	t_token *it;
 
-	tab = data->args;
-	i = 0;
+	it = token;
 	status = 0;
 	fd = -1;
-	while (tab[i])
+	while (it)
 	{
 		if (pipe(data->pipe) == -1)
 			perror("PIPE !");
@@ -57,18 +57,16 @@ bool	exec_pipe(t_data *data, char ***tab)
 			perror("fork");
 		if (pid == 0)
 		{
-			if (tab[i + 1] && operator_choice(tab[i + 1], &fd) == -1)
+			if (it->next && operator_choice(it->arg, &fd) == -1)
 				change_pipe(data, data->pipe[0], data->pipe[1], 1);
-			if (data->ope_nbr > 1)
-				fd = operator_choice(tab[i + 2], &fd);
-			if (ifbuiltin(tab[i]) == TRUE)
+			if (it->builtins == TRUE)
 			{
-				exect_builtin(tab[i], data);
+				exect_builtin(it->arg, data);
 				exit(0);
 			}
-			else
+			else if (it->type == CMD)
 			{
-				if (!exec_all(tab[i], data))
+				if (!exec_all(it, data))
 					return (FALSE);
 			}
 		}
@@ -87,34 +85,34 @@ bool	exec_pipe(t_data *data, char ***tab)
 			change_pipe(data, data->pipe[0], data->pipe[1], 2);
 		}
 		fd = -1;
-		i++;
 		waitpid(pid, &status, 0);
+		it = it->next;
 	}
 	change_pipe(data, data->pipe[0], data->pipe[1], 3);
 	return (TRUE);
 }
 
-bool	exec_cmd(t_data *data, char ***tab)
+bool	exec_cmd(t_data *data, t_token *token)
 {
 	pid_t	pid;
 	int		fd;
 	int		status;
+	t_token *it;
 
 	fd = -1;
+	it = token;
 	status = 0;
-	if (data->ope_nbr > 0)
-		fd = operator_choice(tab[1], &fd);
-	if (data->ope_nbr > 1)
-		fd = operator_choice(tab[2], &fd);
-	if (ifbuiltin(tab[0]) == TRUE)
-		exect_builtin(tab[0], data);
+	if (data->ope_nbr > 0 && it->next->type )
+		fd = operator_choice(it->arg, &fd);
+	if (it->builtins == TRUE)
+		exect_builtin(it->arg, data);
 	else
 	{
 		pid = fork();
 		if (pid == -1)
 			perror("fork");
 		if (pid == 0)
-			exec_all(tab[0], data);
+			exec_all(it, data);
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
 			g_exit_value = WEXITSTATUS(status);

@@ -76,17 +76,17 @@ int	is_pid(char *str)
 
 void	change_pipe(t_data *data, int in, int out, int status)
 {
-	if (status == 2)
-	{
-		close(out);
-		dup2(in, 0);
-		close(in);
-	}
 	if (status == 1)
 	{
 		close(in);
 		dup2(out, 1);
 		close(out);
+	}
+	if (status == 2)
+	{
+		close(out);
+		dup2(in, 0);
+		close(in);
 	}
 	if (status == 3)
 	{

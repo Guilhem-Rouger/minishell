@@ -46,5 +46,5 @@ void	clear_all(t_data *data)
 		ft_lstclear(&(data->cmd), free);
 	if (data->token)
 		token_clear(&(data->token), free);
-	clear_single(data);
+	//clear_single(data);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bguillot <bguillot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: guilhem <guilhem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:49:25 by bguillot          #+#    #+#             */
-/*   Updated: 2024/10/08 14:51:06 by bguillot         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:48:44 by guilhem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,6 @@ void	setup(char **env, t_data *data)
 	path_setup(env, data);
 	env_setup(env, data);
 	data->user = getenv("USER");
-	data->operator_nbr = 0;
+	data->ope_nbr = 0;
 	list_path_setup(data);
 }

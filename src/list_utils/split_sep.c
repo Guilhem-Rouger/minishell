@@ -60,6 +60,7 @@ void	split_single(char *start, char **result, const char *sep, int *j)
 		if (token_start < start)
 			result[(*j)++] = create_token(token_start, start - 1);
 	}
+	free(s);
 }
 
 char	**split_sep(char **inputs, const char *separators)

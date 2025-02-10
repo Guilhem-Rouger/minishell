@@ -22,6 +22,7 @@ bool	spliting_cmd(char *line, t_data *data)
 	q->j = 0;
 	q->quote_char = '\0';
 	tab = split_quote(line, q);
+	free(q);
 	tab_temp = split_sep(tab, "<|> ");
 	clear_tab(tab);
 	data->cmd = NULL;

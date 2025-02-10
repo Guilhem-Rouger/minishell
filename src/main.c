@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bguillot <bguillot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: guilhem <guilhem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:45:01 by bguillot          #+#    #+#             */
-/*   Updated: 2024/10/08 14:36:06 by bguillot         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:57:49 by guilhem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	waiting_command(t_data *data)
 		token_clear(&(data->token), free);
 		free(data->path);
 	}
+	rl_clear_history();
 	exit_command(data);
 }
 
