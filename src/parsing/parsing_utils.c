@@ -23,7 +23,7 @@ bool	spliting_cmd(char *line, t_data *data)
 	q->quote_char = '\0';
 	tab = split_quote(line, q);
 	free(q);
-	tab_temp = split_sep(tab, "<|> ");
+	tab_temp = split_sep(tab, "<|>& ");
 	clear_tab(tab);
 	data->cmd = NULL;
 	if (!tab_temp)
@@ -92,11 +92,15 @@ void	count_pipe(char *line, t_data *data)
 
 bool	parsing(char *line, t_data *data)
 {
+	if (!check_line(line))
+		return (FALSE);
 	if (!quote_check(line))
 		return (FALSE);
 	if (!spliting_cmd(line, data))
 		return (FALSE);
 	if (!token_setup(data))
+		return (FALSE);
+	if (!token_verif(data->token))
 		return (FALSE);
 	if (!replace_env_var(data))
 		return (FALSE);

@@ -1,8 +1,9 @@
 SRCS =	src/main.c \
-				src/start.c \
+				src/setup.c \
 				src/parsing/parsing_utils.c \
 				src/parsing/quote.c \
 				src/parsing/token.c \
+				src/parsing/token_verif.c \
 				src/list_utils/lst_token.c \
 				src/list_utils/lst_env.c \
 				src/list_utils/utils.c \
@@ -25,6 +26,7 @@ SRCS =	src/main.c \
 				src/list_utils/utils3.c \
 				src/list_utils/utils4.c \
 				src/parsing/operator.c \
+				src/parsing/parsing.c \
 				src/list_utils/gnl.c
 				
 OBJS = $(SRCS:.c=.o)

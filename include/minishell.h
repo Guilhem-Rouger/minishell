@@ -6,7 +6,7 @@
 /*   By: guilhem <guilhem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:35:05 by grouger           #+#    #+#             */
-/*   Updated: 2025/02/10 17:36:53 by guilhem          ###   ########.fr       */
+/*   Updated: 2025/02/10 20:28:07 by guilhem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct s_env {
 void  starting_message(void);
 void  setup(char **env, t_data *data);
 bool  parsing(char *line, t_data *data );
+bool check_line(char *line);
 void  path_setup(char **env, t_data *data);
 void  env_setup(char **env, t_data *data);
 bool  spliting_cmd(char *line, t_data *data);
@@ -147,7 +148,9 @@ bool quote_check(char *line);
 t_token *token_create(char *str, int token);
 t_token *last_token(t_token *lst);
 bool    token_setup(t_data *data);
+bool token_verif(t_token *token);
 void   setup_arg(t_token *token);
+bool lastredir_check(t_token *token);
 void    token_add_back(t_token **lst, t_token *tok);
 void	  token_clear(t_token **lst, void (*del)(void *));
 void    token_quote(char *str, t_token *new);
