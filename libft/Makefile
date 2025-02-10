@@ -10,7 +10,7 @@ $(NAME) : $(OBJS)
 	@ar -rcs $(NAME) $(OBJS) 
 
 %.o : %.c
-	@clang -Wall -Werror -Wextra -g $< -c -o $@
+	@gcc -Wall -Werror -Wextra -g $< -c -o $@
 
 clean : 
 	@rm -f $(OBJS)

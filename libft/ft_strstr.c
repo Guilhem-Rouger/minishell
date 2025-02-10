@@ -14,8 +14,8 @@
 
 char	*ft_strstr(const char *str, const char *srch)
 {
-	int		i;
-	char	*s;
+	int			i;
+	char		*s;
 	size_t		n;
 
 	n = ft_strlen(str);

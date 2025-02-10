@@ -1,8 +1,8 @@
 #include "../../include/minishell.h"
 
-int next_dollar(char *str)
+int	next_dollar(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -11,14 +11,14 @@ int next_dollar(char *str)
 			return (i);
 		i++;
 	}
-	return(i);
+	return (i);
 }
 
 int	count_replace(char *str)
 {
-	int i;
+	int	i;
 	int	var;
-	
+
 	i = 0;
 	var = 0;
 	while (str[i])
@@ -42,12 +42,12 @@ int	count_replace(char *str)
 	return (var);
 }
 
-char *replace_pid(char *str)
+char	*replace_pid(char *str)
 {
-	int	i;
-	char *tmp;
-	pid_t pid;
-	
+	pid_t	pid;
+	char	*tmp;
+	int		i;
+
 	i = is_pid(str);
 	tmp = ft_substr(str, i + 2, ft_strlen(&str[i + 1]));
 	pid = getpid();
@@ -58,9 +58,9 @@ char *replace_pid(char *str)
 	return (str);
 }
 
-int is_pid(char *str)
+int	is_pid(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -74,24 +74,27 @@ int is_pid(char *str)
 	return (-1);
 }
 
-void change_pipe(t_data *data, int in, int out, int status)
+void	change_pipe(t_data *data, int in, int out, int status)
 {
 	if (status == 2)
 	{
-				close(out);
-				dup2(in, 0);
-				close(in);
+		close(out);
+		dup2(in, 0);
+		close(in);
 	}
 	if (status == 1)
 	{
-				close(in);
-				dup2(out, 1);
-				close(out);
+		close(in);
+		dup2(out, 1);
+		close(out);
 	}
 	if (status == 3)
 	{
 		close(in);
 		close(out);
 		dup2(data->fd_in, 0);
+		dup2(data->fd_out, 1);
+		close(data->fd_out);
+		close(data->fd_in);
 	}
 }

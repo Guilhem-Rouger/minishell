@@ -1,59 +1,50 @@
 #include "../../include/minishell.h"
 
-void clear_tab(char **tab)
+void	clear_tab(char **tab)
 {
-  int i;
+	int	i;
 
-  if (!tab)
-      return;
-
-  i = 0;
-  while (tab[i])
-  {
-      free(tab[i]);
-      i++;
-  }
-  free(tab);
-  tab = NULL; 
+	if (!tab)
+		return ;
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }
 
-void clear_2tab(char ***tab)
+void	clear_2tab(char ***tab)
 {
-    int i;
+	int	i;
 
-    if (!tab || !*tab)
-        return;
-    i = 0;
-    while ((*tab)[i]) // Compte le nombre de sous-tableaux
-        i++;
-
-    while (i > 0) // Libère les sous-tableaux en ordre inverse
-    {
-        i--;
-        free((*tab)[i]);
-    }
-    free(*tab);
+	if (!tab || !*tab)
+		return ;
+	i = 0;
+	while ((*tab)[i])
+		i++;
+	while (i > 0)
+	{
+		i--;
+		clear_tab((tab)[i]);
+	}
 }
 
-void clear_single(t_data *data)
+void	clear_single(t_data *data)
 {
-    free(data->prompt);
-    //free(data->user);
+	free(data->path);
 }
 
-void clear_all(t_data *data)
+void	clear_all(t_data *data)
 {
-    if (data->path)
-        clear_tab(data->path);
-    if (data->env)
-        env_clear(&data->env, free);
-    if (data->args) {
-        clear_2tab(data->args);
-        free(data->args);
-    }
-    if (data->cmd)
-        ft_lstclear(&(data->cmd), free);
-    if (data->token)
-        token_clear(&(data->token), free);
-    clear_single(data);
+	close(data->fd_in);
+	close(data->fd_out);
+	if (data->list_path)
+		clear_tab(data->list_path);
+	if (data->cmd)
+		ft_lstclear(&(data->cmd), free);
+	if (data->token)
+		token_clear(&(data->token), free);
+	clear_single(data);
 }

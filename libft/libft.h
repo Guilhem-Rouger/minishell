@@ -51,14 +51,15 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-int	ft_strcount(char const *s1, char c);
+int		ft_strcount(char const *s1, char c);
 char	*ft_strstr(const char *str, const char *srch);
 
-typedef struct s_list {
-	char *str;
-	struct s_list *prev;
-	struct s_list *next;
-} t_list;
+typedef struct s_list
+{
+	char				*str;
+	struct s_list		*prev;
+	struct s_list		*next;
+}									t_list;
 
 t_list	*ft_lstnew(char *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);

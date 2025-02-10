@@ -1,43 +1,45 @@
 #include "../../include/minishell.h"
 
-
-char **split_quote(const char *line) 
+void	splite_quote2(char **tab, const char *line, t_quote *q)
 {
-    size_t len = strlen(line);
-    char **tab = malloc((len + 1) * sizeof(char *));
-    size_t j = 0, i = 0, start = 0;
-    bool in_quotes = FALSE;
-    char quote_char = '\0';
+	if (q->in_quote && line[q->i] == q->quote_char)
+	{
+		tab[q->j++] = ft_strndup(&line[q->start], q->i - q->start + 1);
+		q->start = q->i + 1;
+		q->in_quote = FALSE;
+	}
+	else if (!q->in_quote)
+	{
+		if (q->i > q->start)
+			tab[q->j++] = ft_strndup(&line[q->start], q->i - q->start);
+		q->quote_char = line[q->i];
+		q->in_quote = TRUE;
+		q->start = q->i;
+	}
+}
 
-    while (i <= len) 
-    {
-        if (line[i] == '\'' || line[i] == '\"') 
-        {
-            if (in_quotes && line[i] == quote_char) 
-            {
-                tab[j++] = ft_strndup(&line[start], i - start + 1);
-                start = i + 1;
-                in_quotes = FALSE;
-            } 
-            else if (!in_quotes) 
-            {
-                if (i > start)
-                    tab[j++] = ft_strndup(&line[start], i - start);
-                quote_char = line[i];
-                in_quotes = TRUE;
-                start = i;
-            }
-        } 
-        else if (!in_quotes && (line[i] == ' ' || line[i] == '\0')) 
-        {
-            if (i > start) 
-                tab[j++] = ft_strndup(&line[start], i - start);
-            start = i + 1; 
-        }
-        i++;
-    }
-    if (start < len)
-        tab[j++] = ft_strndup(&line[start], i - start);
-    tab[j] = NULL;
-    return tab;
+char	**split_quote(const char *line, t_quote *q)
+{
+	char		**tab;
+	size_t		len;
+
+	q->in_quote = FALSE;
+	len = strlen(line);
+	tab = malloc((len + 1) * sizeof(char *));
+	while (q->i <= len)
+	{
+		if (line[q->i] == '\'' || line[q->i] == '\"')
+			splite_quote2(tab, line, q);
+		else if (!q->in_quote && (line[q->i] == ' ' || line[q->i] == '\0'))
+		{
+			if (q->i > q->start)
+				tab[q->j++] = ft_strndup(&line[q->start], q->i - q->start);
+			q->start = q->i + 1;
+		}
+		q->i++;
+	}
+	if (q->start < len)
+		tab[q->j++] = ft_strndup(&line[q->start], q->i - q->start);
+	tab[q->j] = NULL;
+	return (tab);
 }

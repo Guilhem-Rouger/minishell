@@ -25,5 +25,6 @@ char	*ft_strdup(const char *s)
 		dup[i] = s[i];
 		++i;
 	}
+	dup[i] = '\0';
 	return (dup);
 }
