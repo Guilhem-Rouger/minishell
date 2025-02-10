@@ -80,8 +80,6 @@ bool	check_cmd(t_data *data)
 bool	setup_tabarg(t_data *data)
 {
 	t_token	*it;
-	char	***args;
-	int		i;
 
 	if (!data || !data->token)
 		return (FALSE);
@@ -89,10 +87,6 @@ bool	setup_tabarg(t_data *data)
 	it = data->token;
 	if (data->pipe_nbr < 0 || data->ope_nbr < 0)
 		return (FALSE);
-	args = ft_calloc(sizeof(char **), data->pipe_nbr + data->ope_nbr + 2);
-	if (!args)
-		return (FALSE);
-	i = 0;
 	while (it)
 	{
 		while (it && it->type != 6 && it->type != 3 && it->type != 4 && \
@@ -101,17 +95,8 @@ bool	setup_tabarg(t_data *data)
 		if (!it)
 			break ;
 		setup_arg(it);
-		if (!it->arg)
-		{
-			clear_2tab(args);
-			return (FALSE);
-		}
-		args[i] = it->arg;
 		it = it->next;
-		i++;
 	}
-	args[i] = NULL;
-	data->args = args;
 	return (TRUE);
 }
 
@@ -121,9 +106,9 @@ bool	task_cmd(t_data *data)
 		return (FALSE);
 	if (!setup_tabarg(data))
 		return (FALSE);
-	if (data->pipe_nbr == 0 && !exec_cmd(data, data->args))
+	if (data->pipe_nbr == 0 && !exec_cmd(data, data->token))
 		return (FALSE);
-	if (data->pipe_nbr != 0 && !exec_pipe(data, data->args))
+	if (data->pipe_nbr != 0 && !exec_pipe(data, data->token))
 		return (FALSE);
 	return (TRUE);
 }

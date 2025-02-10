@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grouger <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: guilhem <guilhem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:35:05 by grouger           #+#    #+#             */
-/*   Updated: 2024/10/08 14:46:05 by grouger          ###   ########.fr       */
+/*   Updated: 2025/02/10 17:36:53 by guilhem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_token {
 } t_token;
 
 // typedef struct s_data 
+
 
 typedef struct s_data {
   struct s_env  *env;
@@ -187,9 +188,9 @@ void clear_2tab(char ***tab);
 
 //Exec
 bool task_cmd(t_data *data);
-bool	exec_cmd(t_data *data, char ***tab);
-bool 	exec_pipe(t_data *data, char ***tab);
-bool exec_all(char **args, t_data *data);
+bool	exec_cmd(t_data *data, t_token *token);
+bool 	exec_pipe(t_data *data, t_token *token);
+bool exec_all(t_token *token, t_data *data);
 bool exect_builtin(char **args, t_data *data);
 void change_pipe(t_data *data, int in, int out, int status);
 bool ifbuiltin(char **args);

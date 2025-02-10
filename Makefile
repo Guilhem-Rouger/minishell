@@ -1,8 +1,8 @@
 SRCS =	src/main.c \
 				src/start.c \
-				src/utils/parsing_utils.c \
-				src/utils/quote.c \
-				src/utils/token.c \
+				src/parsing/parsing_utils.c \
+				src/parsing/quote.c \
+				src/parsing/token.c \
 				src/list_utils/lst_token.c \
 				src/list_utils/lst_env.c \
 				src/list_utils/utils.c \
@@ -11,7 +11,7 @@ SRCS =	src/main.c \
 				src/list_utils/split_sep.c \
 				src/list_utils/split_sep2.c \
 				src/built-in/echo.c \
-				src/utils/prompt.c \
+				src/parsing/prompt.c \
 				src/built-in/cd.c \
 				src/built-in/export.c \
 				src/built-in/env_utils.c \
@@ -19,12 +19,12 @@ SRCS =	src/main.c \
 				src/built-in/exit.c \
 				src/built-in/pwd.c \
 				src/built-in/env.c \
-				src/utils/check_exec.c \
-				src/utils/exec.c \
+				src/exec/check_exec.c \
+				src/exec/exec.c \
 				src/utils/clear.c \
 				src/list_utils/utils3.c \
 				src/list_utils/utils4.c \
-				src/utils/operator.c \
+				src/parsing/operator.c \
 				src/list_utils/gnl.c
 				
 OBJS = $(SRCS:.c=.o)
