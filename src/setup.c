@@ -12,6 +12,10 @@
 
 #include "../include/minishell.h"
 
+/* Configuration de la liste des chemins d'exécution
+** - Divise la variable PATH en chemins individuels
+** - Vérifie les permissions d'exécution pour chaque chemin
+** - Affiche une erreur pour les chemins invalides */
 void	list_path_setup(t_data *data)
 {
 	int	i;
@@ -27,6 +31,10 @@ void	list_path_setup(t_data *data)
 	}
 }
 
+/* Configuration du PATH
+** - Recherche la variable PATH dans l'environnement
+** - Si non trouvée, utilise un chemin par défaut
+** - Stocke l'index et la valeur du PATH */
 void	path_setup(char **env, t_data *data)
 {
 	int	i;
@@ -48,6 +56,9 @@ void	path_setup(char **env, t_data *data)
 	return ;
 }
 
+/* Configuration de l'environnement
+** - Crée une liste chaînée des variables d'environnement
+** - Chaque nœud contient la variable et son index */
 void	env_setup(char **env, t_data *data)
 {
 	int	i;
@@ -61,6 +72,11 @@ void	env_setup(char **env, t_data *data)
 	}
 }
 
+/* Fonction principale d'initialisation
+** - Configure le PATH
+** - Configure l'environnement
+** - Récupère le nom d'utilisateur
+** - Initialise les compteurs et structures */
 void	setup(char **env, t_data *data)
 {
 	path_setup(env, data);
