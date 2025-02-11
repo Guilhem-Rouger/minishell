@@ -59,11 +59,11 @@ typedef struct s_data {
   int     fd_out;
   char    *user;
   char    *prompt;
-  bool    *dq;
-  bool    *sq;
+  bool    dq;
+  bool    sq;
   int     p_index;
   char    *minishell_path;
-  char    **path;
+  char    **path; 
   int     nb_path;
   char    **list_path;
   struct s_list *cmd;
@@ -115,6 +115,7 @@ void  print_prompt(void);
 char  *get_prompt(t_data *data);
 int ft_strtablen(char ***tab);
 //utils
+void print_data(t_data *data);
 int     tablen(char **tab);
 int     is_dollar(char *str);
 int     countarg(t_token *token);
