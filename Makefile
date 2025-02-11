@@ -1,5 +1,5 @@
 SRCS =	src/main.c \
-				src/start.c \
+				src/setup.c \
 				src/parsing/parsing_utils.c \
 				src/parsing/quote.c \
 				src/parsing/token.c \
