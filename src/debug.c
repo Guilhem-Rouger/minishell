@@ -43,11 +43,26 @@ void print_data(t_data *data) {
     printf("ID Pipe: %d\n", data->id_pipe); //id pipe ??
     printf("Pipe: [%d, %d]\n", data->pipe[0], data->pipe[1]); //pipe ??
     printf("Commands:\n");
+
+    /*Affiche les commandes de la struct list */
     t_list *cmd = data->cmd;
     while (cmd) {
         printf("  %s\n", cmd->str);
         cmd = cmd->next;
     }
+
+    /*Affiche les arguments de la struct token*/
+    printf("Tokens:\n");
+    t_token *token = data->token;
+    while (token) {
+        printf("  String: %s\n", token->str);
+        printf("  Type: %d\n", token->type);
+        printf("  Double Quote: %s\n", token->dq ? "true" : "false");
+        printf("  Single Quote: %s\n", token->sq ? "true" : "false");
+        token = token->next;
+    }
+
+
     // Assuming cmd and token are lists, you might want to iterate and print them as well
     // This part is left as an exercise as it depends on the structure of s_list and s_token
 }
