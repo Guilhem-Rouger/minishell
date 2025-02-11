@@ -42,7 +42,12 @@ void print_data(t_data *data) {
     printf("Number of Operators: %d\n", data->ope_nbr); //nombre de redirections
     printf("ID Pipe: %d\n", data->id_pipe); //id pipe ??
     printf("Pipe: [%d, %d]\n", data->pipe[0], data->pipe[1]); //pipe ??
-
+    printf("Commands:\n");
+    t_list *cmd = data->cmd;
+    while (cmd) {
+        printf("  %s\n", cmd->str);
+        cmd = cmd->next;
+    }
     // Assuming cmd and token are lists, you might want to iterate and print them as well
     // This part is left as an exercise as it depends on the structure of s_list and s_token
 }

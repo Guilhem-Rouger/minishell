@@ -61,18 +61,18 @@ typedef struct s_data {
   char    *prompt;
   bool    dq;
   bool    sq;
-  int     p_index;
+  int     p_index; //FULL BUGER: pas le bon index
   char    *minishell_path;
-  char    **path; 
-  int     nb_path;
-  char    **list_path;
-  struct s_list *cmd;
+  char    **path; //path de je ne sais pas quoi
+  int     nb_path; //nombre de path
+  char    **list_path; // liste des path ??
+  struct s_list *cmd; 
   struct s_token *token;
-  char           ***args;
+  char           ***args; // ??
   int     pipe_nbr;
   int     ope_nbr;
-  int     id_pipe;
-  int     pipe[2];
+  int     id_pipe; //???
+  int     pipe[2]; //pipe mais buger je pense
 }      t_data;
 
 // typedef struct s_data 
