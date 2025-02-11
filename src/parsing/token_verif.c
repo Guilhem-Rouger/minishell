@@ -6,7 +6,7 @@
 /*   By: guilhem <guilhem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:02:28 by grouger           #+#    #+#             */
-/*   Updated: 2025/02/11 17:50:00 by guilhem          ###   ########.fr       */
+/*   Updated: 2025/02/11 18:36:02 by guilhem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,24 +59,50 @@ bool lastredir_check(t_token *token)
     return (TRUE);
 }
 
-bool char_check(t_token *token)
+bool valid_dir(char *str)
+{
+    int i;
+    int count;
+
+    i = 0;
+    count = 0;
+    while (str[i])
+    {
+        if (str[i] != '/' && str[i] != '.')
+            return (FALSE);
+        if (str[i] == '.')
+            count++;
+        else if(str[i] == '/')
+            count = 0;
+        if (count == 3)
+            return (FALSE);
+        i++;
+    }
+    return (TRUE);
+}
+
+bool dir_check(t_token *token)
 {
     t_token *it;
-    t_token *last;
 
-    last = last_token(token);
     it = token;
-    while (it != last && it->next != last)
-        it = it->next;
-    if (last->type == PIPE && it->type == PIPE)
+    if (it->str[0] == '/' || it->str[0] == '.')
     {
-        ft_putstr_fd("bash: syntax error near unexpected token `|'\n", 2);
-        return (FALSE);
-    }
-    if (last->type == PIPE)
-    {
-        ft_putstr_fd("bash: syntax error near unexpected token `|'\n", 2);
-        return (FALSE);
+        if (!valid_dir(it->str))
+        {
+            ft_putstr_fd("bash: ", 2);
+            ft_putstr_fd(it->str, 2);
+            ft_putstr_fd(": No such file or directory\n", 2);
+            g_exit_value = 127;
+            return (FALSE);
+        }
+        else
+        {
+            ft_putstr_fd("bash: ", 2);
+            ft_putstr_fd(it->str, 2);
+            ft_putstr_fd(": Is a directory\n", 2);
+            g_exit_value = 126;
+        }
     }
     return (TRUE);
 }
@@ -88,7 +114,7 @@ bool token_verif(t_token *token)
         g_exit_value = 2;
         return (FALSE);
     }
-    if (!char_check(token))
+    if (!dir_check(token))
         return (FALSE);
     return (TRUE);
 }
