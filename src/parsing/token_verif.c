@@ -6,7 +6,7 @@
 /*   By: guilhem <guilhem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:02:28 by grouger           #+#    #+#             */
-/*   Updated: 2025/02/10 21:11:03 by guilhem          ###   ########.fr       */
+/*   Updated: 2025/02/11 17:50:00 by guilhem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ bool char_check(t_token *token)
         it = it->next;
     if (last->type == PIPE && it->type == PIPE)
     {
-        ft_putstr_fd("bash: syntax error near unexpected token `||'\n", 2);
+        ft_putstr_fd("bash: syntax error near unexpected token `|'\n", 2);
         return (FALSE);
     }
     if (last->type == PIPE)

@@ -6,7 +6,7 @@
 /*   By: guilhem <guilhem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:35:05 by grouger           #+#    #+#             */
-/*   Updated: 2025/02/10 20:28:07 by guilhem          ###   ########.fr       */
+/*   Updated: 2025/02/11 17:12:36 by guilhem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ typedef struct s_data {
   int     fd_out;
   char    *user;
   char    *prompt;
-  bool    *dq;
-  bool    *sq;
+  //bool    *dq;
+  //bool    *sq;
   int     p_index;
   char    *minishell_path;
   char    **path;

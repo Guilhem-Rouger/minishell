@@ -68,7 +68,7 @@ bool	check_cmd(t_data *data)
 		{
 			bol = 1;
 		}
-		if (it->type == CMD)
+		if (it->type == CMD || it->type == PARAM)
 			data->path[i++] = it->path;
 		it = it->next;
 	}

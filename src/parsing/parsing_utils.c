@@ -100,10 +100,10 @@ bool	parsing(char *line, t_data *data)
 		return (FALSE);
 	if (!token_setup(data))
 		return (FALSE);
-	if (!token_verif(data->token))
-		return (FALSE);
 	if (!replace_env_var(data))
 		return (FALSE);
+	if (!token_verif(data->token))
+			return (FALSE);
 	count_pipe(line, data);
 	count_operator(data);
 	data->fd_in = dup(0);

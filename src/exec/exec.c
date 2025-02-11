@@ -64,7 +64,7 @@ bool	exec_pipe(t_data *data, t_token *token)
 				exect_builtin(it->arg, data);
 				exit(0);
 			}
-			else if (it->type == CMD)
+			else if (it->type == CMD || it->type == PARAM)
 			{
 				if (!exec_all(it, data))
 					return (FALSE);

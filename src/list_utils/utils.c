@@ -23,6 +23,8 @@ char	*replace_var(char *str)
 	int				i;
 
 	i = is_dollar(str);
+	if (str[0] == '\\')
+		return (ft_substr(str, 1, ft_strlen(str) - 1));
 	if (i == -1)
 		return (str);
 	tmp = ft_substr(str, i, ft_isalphalen(&str[i]));
