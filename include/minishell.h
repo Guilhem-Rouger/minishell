@@ -6,7 +6,7 @@
 /*   By: guilhem <guilhem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:35:05 by grouger           #+#    #+#             */
-/*   Updated: 2025/02/10 17:36:53 by guilhem          ###   ########.fr       */
+/*   Updated: 2025/02/11 17:12:36 by guilhem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,20 @@ typedef struct s_data {
   int     fd_out;
   char    *user;
   char    *prompt;
-  bool    dq;
-  bool    sq;
-  int     p_index; //FULL BUGER: pas le bon index
+  //bool    *dq;
+  //bool    *sq;
+  int     p_index;
   char    *minishell_path;
-  char    **path; //path de je ne sais pas quoi
-  int     nb_path; //nombre de path
-  char    **list_path; // liste des path ??
-  struct s_list *cmd; // liste des commandes
-  struct s_token *token; // tokenneiser
-  char           ***args; // ??
+  char    **path;
+  int     nb_path;
+  char    **list_path;
+  struct s_list *cmd;
+  struct s_token *token;
+  char           ***args;
   int     pipe_nbr;
   int     ope_nbr;
-  int     id_pipe; //???
-  int     pipe[2]; //pipe mais buger je pense
+  int     id_pipe;
+  int     pipe[2];
 }      t_data;
 
 // typedef struct s_data 
@@ -105,6 +105,7 @@ typedef struct s_env {
 void  starting_message(void);
 void  setup(char **env, t_data *data);
 bool  parsing(char *line, t_data *data );
+bool check_line(char *line);
 void  path_setup(char **env, t_data *data);
 void  env_setup(char **env, t_data *data);
 bool  spliting_cmd(char *line, t_data *data);
@@ -115,7 +116,6 @@ void  print_prompt(void);
 char  *get_prompt(t_data *data);
 int ft_strtablen(char ***tab);
 //utils
-void print_data(t_data *data);
 int     tablen(char **tab);
 int     is_dollar(char *str);
 int     countarg(t_token *token);
@@ -148,7 +148,9 @@ bool quote_check(char *line);
 t_token *token_create(char *str, int token);
 t_token *last_token(t_token *lst);
 bool    token_setup(t_data *data);
+bool token_verif(t_token *token);
 void   setup_arg(t_token *token);
+bool lastredir_check(t_token *token);
 void    token_add_back(t_token **lst, t_token *tok);
 void	  token_clear(t_token **lst, void (*del)(void *));
 void    token_quote(char *str, t_token *new);
