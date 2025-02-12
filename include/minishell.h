@@ -66,8 +66,8 @@ typedef struct s_data {
   char    **path; //path de je ne sais pas quoi
   int     nb_path; //nombre de path
   char    **list_path; // liste des path ??
-  struct s_list *cmd; 
-  struct s_token *token;
+  struct s_list *cmd; // liste des commandes
+  struct s_token *token; // tokenneiser
   char           ***args; // ??
   int     pipe_nbr;
   int     ope_nbr;
