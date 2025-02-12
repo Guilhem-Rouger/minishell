@@ -45,8 +45,8 @@ bool	check_builtin(char *cmd, t_token *it, t_data *data)
 		return (TRUE);
 	else
 	{
-		printf("\033[0;36mminicoque \033[0;0m: \033[0;31mcommand not \
-			found \033[0;0m : %s \n", cmd);
+		printf("\033[0;36mbash \033[0;0m: \033[0;31mcommand not \
+found \033[0;0m : %s \n", cmd);
 		return (FALSE);
 	}
 }
@@ -106,7 +106,7 @@ bool	task_cmd(t_data *data)
 		return (FALSE);
 	if (!setup_tabarg(data))
 		return (FALSE);
-	print_data(data); // print les données de la structure data
+	//print_data(data); // print les données de la structure data
 	if (data->pipe_nbr == 0 && !exec_cmd(data, data->token))
 		return (FALSE);
 	if (data->pipe_nbr != 0 && !exec_pipe(data, data->token))

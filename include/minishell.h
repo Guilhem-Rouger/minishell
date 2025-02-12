@@ -6,7 +6,7 @@
 /*   By: guilhem <guilhem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:35:05 by grouger           #+#    #+#             */
-/*   Updated: 2025/02/12 15:05:13 by guilhem          ###   ########.fr       */
+/*   Updated: 2025/02/12 15:16:15 by guilhem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ bool check_line(char *line);
 void  path_setup(char **env, t_data *data);
 void  env_setup(char **env, t_data *data);
 bool  spliting_cmd(char *line, t_data *data);
+bool check_endother(char *line);
 void  list_path_setup(t_data *data);
 void  signal_setup(void);
 bool  emptyline(char *line);

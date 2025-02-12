@@ -4,7 +4,13 @@ void	splite_quote2(char **tab, const char *line, t_quote *q)
 {
 	if (q->in_quote && line[q->i] == q->quote_char)
 	{
-		tab[q->j++] = ft_strndup(&line[q->start], q->i - q->start + 1);
+		if (line[q->start-1] == ' ')
+			tab[q->j++] = ft_strndup(&line[q->start], q->i - q->start + 1);
+		else
+		{
+			tab[q->j-1] = ft_strjoin(ft_strdup(&q->quote_char), tab[q->j-1]);
+			tab[q->j-1] = ft_strjoin(tab[q->j-1], ft_strndup(&line[q->start + 1], q->i - q->start));
+		}
 		q->start = q->i + 1;
 		q->in_quote = FALSE;
 	}

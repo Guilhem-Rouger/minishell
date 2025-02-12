@@ -6,7 +6,7 @@
 /*   By: guilhem <guilhem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:09:56 by grouger           #+#    #+#             */
-/*   Updated: 2025/02/11 17:28:48 by guilhem          ###   ########.fr       */
+/*   Updated: 2025/02/12 15:16:24 by guilhem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,11 @@ bool check_other(char *line)
     if (line[0] == '&')
     {
         ft_putstr_fd("bash: syntax error near unexpected token `&'\n", 2);
+        g_exit_value = 2;
+        return (FALSE);
+    }
+    if (!check_endother(line))
+    {
         g_exit_value = 2;
         return (FALSE);
     }
