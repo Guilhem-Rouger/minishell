@@ -6,7 +6,7 @@
 /*   By: guilhem <guilhem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:35:05 by grouger           #+#    #+#             */
-/*   Updated: 2025/02/11 17:12:36 by guilhem          ###   ########.fr       */
+/*   Updated: 2025/02/12 15:05:13 by guilhem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,20 @@ typedef struct s_data {
   int     fd_out;
   char    *user;
   char    *prompt;
-  //bool    *dq;
-  //bool    *sq;
-  int     p_index;
+  bool    dq;
+  bool    sq;
+  int     p_index; //FULL BUGER: pas le bon index
   char    *minishell_path;
-  char    **path;
-  int     nb_path;
-  char    **list_path;
-  struct s_list *cmd;
+  char    **path; //path de je ne sais pas quoi
+  int     nb_path; //nombre de path
+  char    **list_path; // liste des path ??
+  struct s_list *cmd; 
   struct s_token *token;
-  char           ***args;
+  char           ***args; // ??
   int     pipe_nbr;
   int     ope_nbr;
-  int     id_pipe;
-  int     pipe[2];
+  int     id_pipe; //???
+  int     pipe[2]; //pipe mais buger je pense
 }      t_data;
 
 // typedef struct s_data 
@@ -116,6 +116,7 @@ void  print_prompt(void);
 char  *get_prompt(t_data *data);
 int ft_strtablen(char ***tab);
 //utils
+void print_data(t_data *data);
 int     tablen(char **tab);
 int     is_dollar(char *str);
 int     countarg(t_token *token);

@@ -34,6 +34,7 @@ void	signal_handler(int sig)
 	}
 }
 
+
 /* Boucle principale du shell
 ** - Configure les signaux
 ** - Gère la lecture des commandes
@@ -68,6 +69,7 @@ void	waiting_command(t_data *data)
 		/* Parsing et exécution de la commande */
 		if (!parsing(data->line, data))
 			continue ;
+		//exec
 		task_cmd(data);
 		/* Nettoyage des ressources après exécution */
 		if (data->pipe_nbr >= 1)

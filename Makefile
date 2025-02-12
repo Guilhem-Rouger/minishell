@@ -28,6 +28,7 @@ SRCS =	src/main.c \
 				src/parsing/operator.c \
 				src/parsing/parsing.c \
 				src/list_utils/gnl.c
+				src/debug.c
 				
 OBJS = $(SRCS:.c=.o)
 NAME = minishell
