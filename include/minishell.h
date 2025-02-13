@@ -102,6 +102,7 @@ typedef struct s_env {
 } t_env;
 
 //fonction
+void print_data(t_data *data);
 void  starting_message(void);
 void  setup(char **env, t_data *data);
 bool  parsing(char *line, t_data *data );
