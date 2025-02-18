@@ -2,7 +2,7 @@
 
 bool	exect_builtin(char **args, t_data *data)
 {
-	if (ft_strncmp(args[0], "echo", 4) == 0)
+	if (ft_strncmp(args[0], "echo", 4)  == 0 && ft_strlen(args[0]) == 4)
 		echo_command(args);
 	else if (ft_strncmp(args[0], "cd", 2) == 0)
 		cd_command(args, data);

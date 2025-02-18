@@ -4,7 +4,7 @@ void	splite_quote2(char **tab, const char *line, t_quote *q)
 {
 	if (q->in_quote && line[q->i] == q->quote_char)
 	{
-		if (line[q->start-1] == ' ')
+		if (q->start == 0 || (line[q->start-1] == ' ' ))
 			tab[q->j++] = ft_strndup(&line[q->start], q->i - q->start + 1);
 		else
 		{
@@ -40,6 +40,8 @@ char	**split_quote(const char *line, t_quote *q)
 		{
 			if (q->i > q->start)
 				tab[q->j++] = ft_strndup(&line[q->start], q->i - q->start);
+			else
+				tab[q->j++] = ft_strndup(" ", 1);
 			q->start = q->i + 1;
 		}
 		q->i++;

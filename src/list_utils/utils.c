@@ -40,7 +40,7 @@ char	*replace_var(char *str)
 		return (var);
 	}
 	tmp = var_end(str, var, end, tmp);
-	free(str);
+	//free(str);
 	return (tmp);
 }
 

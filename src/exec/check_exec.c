@@ -32,11 +32,21 @@ bool	check_allcmd(char *cmd, t_data *data, t_token *it)
 
 bool	check_builtin(char *cmd, t_token *it, t_data *data)
 {
-	if (ft_strncmp(cmd, "echo", 4) == 0 || ft_strncmp(cmd, "pwd", 3) == 0 || \
-		ft_strncmp(cmd, "cd", 2) == 0 || ft_strncmp(cmd, "export", 6) == 0 || \
-		ft_strncmp(cmd, "unset", 5) == 0 || ft_strncmp(cmd, "env", 3) == 0 || \
-		ft_strncmp(cmd, "exit", 4) == 0 || it->type == 3 || it->type == 4 || \
+	if ((ft_strncmp(cmd, "cd", 2) == 0 && ft_strlen(cmd) == 2) || \
+		(ft_strncmp(cmd, "export", 6) == 0 && ft_strlen(cmd)  == 6) ||\
+		(ft_strncmp(cmd, "unset", 5) == 0 && ft_strlen(cmd) == 5) ||\
+		it->type == 3 || it->type == 4 || \
 		it->type == 1 || it->type == 2)
+	{
+		it->builtins = 1;
+		return (TRUE);
+	}
+	else if ((ft_strncmp(cmd, "env", 3) == 0 || ft_strncmp(cmd, "pwd", 3) == 0) && ft_strlen(cmd) == 3)
+	{
+		it->builtins = 1;
+		return (TRUE);
+	}
+	else if ((ft_strncmp(cmd, "echo", 4) == 0 || ft_strncmp(cmd, "exit", 4) == 0) && ft_strlen(cmd) == 4)
 	{
 		it->builtins = 1;
 		return (TRUE);

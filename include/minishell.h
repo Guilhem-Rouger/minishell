@@ -6,7 +6,7 @@
 /*   By: guilhem <guilhem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:35:05 by grouger           #+#    #+#             */
-/*   Updated: 2025/02/12 15:16:15 by guilhem          ###   ########.fr       */
+/*   Updated: 2025/02/12 16:56:28 by guilhem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void print_data(t_data *data);
 int     tablen(char **tab);
 int     is_dollar(char *str);
 int     countarg(t_token *token);
-t_env   *get_env_var(char *var, t_data *data);
+//t_env   *get_env_var(char *var, t_data *data);
 char    *replace_var(char *str);
 char    **env_to_tab(t_env *env);
 bool    other_cmd(t_token *token);

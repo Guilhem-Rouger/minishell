@@ -4,7 +4,6 @@ void	token_quote(char *str, t_token *new)
 {
 	if (str[0] == '\'' || str[0] == '\"')
 	{
-		new->str = ft_substr(str, 1, ft_strlen(str) - 2);
 		if (str[0] == '\'')
 		{
 			new->sq = TRUE;
@@ -15,6 +14,7 @@ void	token_quote(char *str, t_token *new)
 			new->sq = FALSE;
 			new->dq = TRUE;
 		}
+		new->str = ft_substr(str, 1, ft_strlen(str) - 2);
 	}
 	else
 	{

@@ -25,9 +25,8 @@ void	echo_command(char **args)
 		return ((void)write(1, "\n", 1));
 	
 	/* Détection de l'option -n */
-	if (ft_strncmp(args[i], "-n", 2) == 0)
+	if (ft_strlen(args[i]) == 2 && ft_strncmp(args[i], "-n", 2) == 0)
 		param = args[i++];
-	
 	/* Parcours et affichage des arguments */
 	while (args[i])
 	{
@@ -40,19 +39,16 @@ void	echo_command(char **args)
 				(void)write(1, &args[i][j], 1);
 				/* Affiche un marqueur visible pour les retours à la ligne */
 				if (args[i][j] == '\n')
-					ft_putstr_fd("\033[47m%\033[0m\n", 1);
+					ft_putstr_fd("\033[47m%\033[0m", 1);
 				j++;
 			}
-			ft_putstr_fd("\033[47m%\033[0m\n", 1);
+			ft_putstr_fd("\033[47m%\033[0m", 1);
 		}
 		/* Mode normal : affichage direct */
 		else
 			ft_putstr_fd(args[i], 1);
 		i++;
 	}
-	
-	/* Affichage du dernier argument et retour à la ligne final */
-	/* Note: args[i] est NULL à ce stade, cette ligne devrait être supprimée */
-	/* ft_putstr_fd(args[i], 1); */
-	ft_putstr_fd("\n", 1);
+	if (!param)
+		ft_putstr_fd("\n", 1);
 }

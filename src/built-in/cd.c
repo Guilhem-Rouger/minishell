@@ -11,13 +11,14 @@ void	cd_command(char **args, t_data *data)
 	char	*current_dir;  /* Répertoire courant */
 	char	*new_dir;      /* Nouveau répertoire cible */
 
+	(void)data;
 	/* Récupère le répertoire courant */
 	current_dir = getcwd(NULL, 65534);
 	
 	/* Cas 1: cd sans argument -> aller au HOME */
 	if (args[1] == NULL)
 	{
-		new_dir = ft_strtrim(get_env_var("HOME", data)->str, "HOME=");
+		new_dir = replace_var("$HOME");
 		if (chdir(new_dir) == -1)
 			perror("HOME variable not set correctly");
 	}
