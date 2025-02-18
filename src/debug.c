@@ -54,11 +54,19 @@ void print_data(t_data *data) {
     /*Affiche les arguments de la struct token*/
     printf("Tokens:\n");
     t_token *token = data->token;
+    //int i = 0;
     while (token) {
         printf("  String: %s\n", token->str);
         printf("  Type: %d\n", token->type);
         printf("  Double Quote: %s\n", token->dq ? "true" : "false");
         printf("  Single Quote: %s\n", token->sq ? "true" : "false");
+        printf("  Builtin: %s\n", token->builtins ? "true" : "false");
+        //while (token->arg[i])
+        //{
+        //    printf("  Arg%d: %s\n", i, token->arg[i]);
+        //    i++;
+        //}
+        printf("   Path: %s\n", token->path);
         token = token->next;
     }
 

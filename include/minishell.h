@@ -33,8 +33,16 @@ extern int g_exit_value;
 # include <readline/history.h>
 # include <sys/wait.h>
 # include <unistd.h>
-# include "../libft/libft.h"
-// typedef struct s_token 
+# include "../libft/libft.h" 
+
+# define INPUT 1    //"<"
+# define HEREDOC 2 //"<<"
+# define TRUNC 3   //">"
+# define APPEND 4  //">>"
+# define PIPE 5    //"|"
+# define CMD 6     //"echo"
+# define ARG 7     //"argument en plus de la commande"
+# define PARAM 8   //"option "
 
 typedef struct s_token {
   char *str;
@@ -50,8 +58,6 @@ typedef struct s_token {
 } t_token;
 
 // typedef struct s_data 
-
-
 typedef struct s_data {
   struct s_env  *env;
   char   *line;
@@ -76,7 +82,6 @@ typedef struct s_data {
 }      t_data;
 
 // typedef struct s_data 
-
 typedef struct s_split {
   bool  in_quote;
   char  c;
@@ -206,14 +211,6 @@ int	ft_append(char **args);
 int operator_choice(char **tab, int *fd);
 void  count_operator(t_data *data);
 
-# define INPUT 1    //"<"
-# define HEREDOC 2 //"<<"
-# define TRUNC 3   //">"
-# define APPEND 4  //">>"
-# define PIPE 5    //"|"
-# define CMD 6     //"|"
-# define ARG 7     //"|"
-# define PARAM 8
 
 # define RESET \033[036m
 
