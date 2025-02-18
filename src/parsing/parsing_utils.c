@@ -25,12 +25,12 @@ bool	spliting_cmd(char *line, t_data *data)
 	free(q);
 	tab_temp = split_sep(tab, "<|>& ");
 	clear_tab(tab);
-	data->cmd = NULL;
+	data->parsing = NULL;
 	if (!tab_temp)
 		return (FALSE);
 	while (tab_temp[i])
 	{
-		ft_lstadd_back(&(data->cmd), ft_lstnew(tab_temp[i]));
+		ft_lstadd_back(&(data->parsing), ft_lstnew(tab_temp[i]));
 		i++;
 	}
 	free(tab_temp);
@@ -103,7 +103,9 @@ bool	parsing(char *line, t_data *data)
 	if (!replace_env_var(data))
 		return (FALSE);
 	if (!token_verif(data->token))
-			return (FALSE);
+		return (FALSE);
+	if(!cmd_setup(data->token, data))
+		return (FALSE);
 	count_pipe(line, data);
 	count_operator(data);
 	data->fd_in = dup(0);

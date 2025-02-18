@@ -1,3 +1,5 @@
+#include "include/minishell.h"
+
 /*exec()
 ├── spec_built_first()
 └── ft_ft_exec()

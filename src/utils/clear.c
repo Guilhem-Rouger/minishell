@@ -43,7 +43,7 @@ void	clear_all(t_data *data)
 	if (data->list_path)
 		clear_tab(data->list_path);
 	if (data->cmd)
-		ft_lstclear(&(data->cmd), free);
+		ft_lstclear(&(data->parsing), free);
 	if (data->token)
 		token_clear(&(data->token), free);
 	//clear_single(data);

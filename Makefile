@@ -11,6 +11,7 @@ SRCS =	src/main.c \
 		src/list_utils/split_quote.c \
 		src/list_utils/split_sep.c \
 		src/list_utils/split_sep2.c \
+		src/list_utils/cmd_list.c \
 		src/built-in/echo.c \
 		src/parsing/prompt.c \
 		src/built-in/cd.c \
@@ -27,6 +28,7 @@ SRCS =	src/main.c \
 		src/list_utils/utils4.c \
 		src/parsing/operator.c \
 		src/parsing/parsing.c \
+		src/parsing/cmd.c \
 		src/list_utils/gnl.c \
 		src/debug.c \
 		src/parsing/error_syntax.c

@@ -60,8 +60,8 @@ bool	token_setup(t_data *data)
 	char	*str_to_use; /* Chaîne à utiliser pour le token */
 	int		toktok;     /* Type du token */
 
-	it = data->cmd;
-	if (!data->cmd)
+	it = data->parsing;
+	if (!data->parsing)
 		return (FALSE);
 	data->token = NULL;
 	

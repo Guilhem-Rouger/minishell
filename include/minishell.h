@@ -6,7 +6,7 @@
 /*   By: guilhem <guilhem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:35:05 by grouger           #+#    #+#             */
-/*   Updated: 2025/02/18 13:28:58 by guilhem          ###   ########.fr       */
+/*   Updated: 2025/02/18 14:35:37 by guilhem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,25 @@ typedef struct s_token {
   struct s_data *data;
 } t_token;
 
+typedef struct  s_cmd
+{
+    char                        *cmd;
+    bool                        is_built;
+    char                        **argv;
+    bool                        redir;
+    int                            in_file;
+    int                            out_file;
+    struct s_redir_index                *lredir;
+    struct s_cmd                *next;
+    struct s_cmd                *back;
+}    t_cmd;
+
 // typedef struct s_data 
 typedef struct s_data {
   struct s_env  *env;
+  struct s_cmd   *cmd;
+  struct s_list *parsing;
+  struct s_token *token;
   char   *line;
   int     fd_in;
   int     fd_out;
@@ -72,8 +88,6 @@ typedef struct s_data {
   char    **path;
   int     nb_path;
   char    **list_path;
-  struct s_list *cmd;
-  struct s_token *token;
   char           ***args;
   int     pipe_nbr;
   int     ope_nbr;
@@ -135,6 +149,14 @@ t_token  *next_cmd(t_token *token);
 char	*create_token(const char *start, const char *end);
 char	*get_next_line(int fd);
 int	    ft_isalphalen(char *str);
+
+//cmd
+
+t_cmd	*cmd_create(t_token *token);
+t_cmd	*last_cmd(t_cmd *lst);
+void	cmd_add_back(t_cmd **cmd, t_cmd *new);
+void *cmd_join(t_cmd *cmd, t_token *token);
+bool cmd_setup(t_token *token, t_data *data);
 
 //built-in
 void	 echo_command(char **args);

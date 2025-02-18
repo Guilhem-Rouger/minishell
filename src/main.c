@@ -6,7 +6,7 @@
 /*   By: guilhem <guilhem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:45:01 by bguillot          #+#    #+#             */
-/*   Updated: 2025/02/10 16:57:49 by guilhem          ###   ########.fr       */
+/*   Updated: 2025/02/18 14:26:44 by guilhem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	waiting_command(t_data *data)
 		if (last_token(data->token) != data->token)
 			free(data->args);
 		free(data->prompt);
-		ft_lstclear(&(data->cmd), free);
+		ft_lstclear(&(data->parsing), free);
 		token_clear(&(data->token), free);
 		free(data->path);
 	}
