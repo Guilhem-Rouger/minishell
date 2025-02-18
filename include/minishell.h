@@ -6,7 +6,7 @@
 /*   By: guilhem <guilhem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:35:05 by grouger           #+#    #+#             */
-/*   Updated: 2025/02/12 16:56:28 by guilhem          ###   ########.fr       */
+/*   Updated: 2025/02/18 13:28:58 by guilhem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,16 @@ extern int g_exit_value;
 # include <readline/history.h>
 # include <sys/wait.h>
 # include <unistd.h>
-# include "../libft/libft.h"
-// typedef struct s_token 
+# include "../libft/libft.h" 
+
+# define INPUT 1    //"<"
+# define HEREDOC 2 //"<<"
+# define TRUNC 3   //">"
+# define APPEND 4  //">>"
+# define PIPE 5    //"|"
+# define CMD 6     //"echo"
+# define ARG 7     //"argument en plus de la commande"
+# define PARAM 8   //"option "
 
 typedef struct s_token {
   char *str;
@@ -50,8 +58,6 @@ typedef struct s_token {
 } t_token;
 
 // typedef struct s_data 
-
-
 typedef struct s_data {
   struct s_env  *env;
   char   *line;
@@ -59,24 +65,23 @@ typedef struct s_data {
   int     fd_out;
   char    *user;
   char    *prompt;
-  bool    dq;
-  bool    sq;
-  int     p_index; //FULL BUGER: pas le bon index
+  //bool    *dq;
+  //bool    *sq;
+  int     p_index;
   char    *minishell_path;
-  char    **path; //path de je ne sais pas quoi
-  int     nb_path; //nombre de path
-  char    **list_path; // liste des path ??
-  struct s_list *cmd; 
+  char    **path;
+  int     nb_path;
+  char    **list_path;
+  struct s_list *cmd;
   struct s_token *token;
-  char           ***args; // ??
+  char           ***args;
   int     pipe_nbr;
   int     ope_nbr;
-  int     id_pipe; //???
-  int     pipe[2]; //pipe mais buger je pense
+  int     id_pipe;
+  int     pipe[2];
 }      t_data;
 
 // typedef struct s_data 
-
 typedef struct s_split {
   bool  in_quote;
   char  c;
@@ -102,6 +107,7 @@ typedef struct s_env {
 } t_env;
 
 //fonction
+void print_data(t_data *data);
 void  starting_message(void);
 void  setup(char **env, t_data *data);
 bool  parsing(char *line, t_data *data );
@@ -117,7 +123,6 @@ void  print_prompt(void);
 char  *get_prompt(t_data *data);
 int ft_strtablen(char ***tab);
 //utils
-void print_data(t_data *data);
 int     tablen(char **tab);
 int     is_dollar(char *str);
 int     countarg(t_token *token);
@@ -207,14 +212,6 @@ int	ft_append(char **args);
 int operator_choice(char **tab, int *fd);
 void  count_operator(t_data *data);
 
-# define INPUT 1    //"<"
-# define HEREDOC 2 //"<<"
-# define TRUNC 3   //">"
-# define APPEND 4  //">>"
-# define PIPE 5    //"|"
-# define CMD 6     //"|"
-# define ARG 7     //"|"
-# define PARAM 8
 
 # define RESET \033[036m
 

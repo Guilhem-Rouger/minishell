@@ -110,6 +110,16 @@ bool	setup_tabarg(t_data *data)
 	return (TRUE);
 }
 
+//void	exec(t_data *data)
+//{
+//	t_list	*cmd;
+//	
+//	cmd = data->cmd;
+//	spec_built_first(data);
+//	if (index->nb_cmd)
+//		ft_ft_exec(data);
+//}
+
 bool	task_cmd(t_data *data)
 {
 	if (!check_cmd(data))

@@ -5,12 +5,12 @@
 void print_data(t_data *data) {
 
 	/*Affiche l'environnemnt de la struct */
-    printf("Environment Variables:\n");
-    t_env *env = data->env;
-    while (env) {
-        printf("  %s\n", env->str);
-        env = env->next;
-    }
+    //printf("Environment Variables:\n");
+    //t_env *env = data->env;
+    //while (env) {
+    //    printf("  %s\n", env->str);
+    //    env = env->next;
+    //}
 
 
 	/* le prompte en entier */
@@ -23,8 +23,8 @@ void print_data(t_data *data) {
 	/* les variables */
     printf("User: %s\n", data->user); //user
     printf("Prompt: %s\n", data->prompt);//prompt AVEC LE READLINE
-    printf("Double Quote: %s\n", data->dq ? "true" : "false"); //double quote ?
-    printf("Single Quote: %s\n", data->sq ? "true" : "false"); //single quote ?
+  //  printf("Double Quote: %s\n", data->dq ? "true" : "false"); //double quote ?
+  //  printf("Single Quote: %s\n", data->sq ? "true" : "false"); //single quote ?
     printf("Pipe Index: %d\n", data->p_index); //pipe index //FULL BUGER
     printf("Minishell Path: %s\n", data->minishell_path); //minishell path
 
@@ -54,11 +54,19 @@ void print_data(t_data *data) {
     /*Affiche les arguments de la struct token*/
     printf("Tokens:\n");
     t_token *token = data->token;
+    //int i = 0;
     while (token) {
         printf("  String: %s\n", token->str);
         printf("  Type: %d\n", token->type);
         printf("  Double Quote: %s\n", token->dq ? "true" : "false");
         printf("  Single Quote: %s\n", token->sq ? "true" : "false");
+        printf("  Builtin: %s\n", token->builtins ? "true" : "false");
+        //while (token->arg[i])
+        //{
+        //    printf("  Arg%d: %s\n", i, token->arg[i]);
+        //    i++;
+        //}
+        printf("   Path: %s\n", token->path);
         token = token->next;
     }
 
