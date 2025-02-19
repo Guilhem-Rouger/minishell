@@ -8,21 +8,15 @@ t_cmd	*cmd_create(t_token *token)
 	if (!new)
 		return (NULL);
 	new->cmd = cmd_join(new, token);
-	new->is_built = token->builtins;
-	new->argv = token->arg;
 	new->redir = FALSE;
 	new->out_file = -1;
 	new->in_file = -1;
-	if (token->next->str[0] == '>')
-	{
-    	new->out_file = operator_choice(token->next->arg, &new->out_file);
-		new->redir = TRUE;
-	}
-	if (token->next->str[0] == '<')
-	{
-    	new->in_file = operator_choice(token->next->arg, &new->in_file);
-		new->redir = TRUE;
-	}
+	redir_check(new, token);
+	new->lredir = NULL;
+	if (new->redir == TRUE)
+		new->lredir = redir_setup(new->lredir, token->next);
+	new->is_built = token->builtins;
+	new->argv = token->arg;
 	new->next = NULL;
     new->back = NULL;
 	return (new);

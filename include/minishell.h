@@ -6,7 +6,7 @@
 /*   By: guilhem <guilhem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:35:05 by grouger           #+#    #+#             */
-/*   Updated: 2025/02/18 14:35:37 by guilhem          ###   ########.fr       */
+/*   Updated: 2025/02/19 04:15:35 by guilhem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct  s_cmd
     bool                        redir;
     int                            in_file;
     int                            out_file;
-    struct s_redir_index                *lredir;
+    struct s_redir               *lredir;
     struct s_cmd                *next;
     struct s_cmd                *back;
 }    t_cmd;
@@ -120,6 +120,17 @@ typedef struct s_env {
   struct s_env *next;
 } t_env;
 
+
+//typedef struct s_redir
+typedef struct s_redir
+{
+        int                                type;
+        char                        *file;
+        int                                fd;
+        struct s_redir        *next;
+        struct s_redir        *back;
+}        t_redir;
+
 //fonction
 void print_data(t_data *data);
 void  starting_message(void);
@@ -155,8 +166,15 @@ int	    ft_isalphalen(char *str);
 t_cmd	*cmd_create(t_token *token);
 t_cmd	*last_cmd(t_cmd *lst);
 void	cmd_add_back(t_cmd **cmd, t_cmd *new);
-void *cmd_join(t_cmd *cmd, t_token *token);
+void cmd_join(t_cmd *cmd, t_token *token);
 bool cmd_setup(t_token *token, t_data *data);
+
+//redir
+
+void	redir_add_back(t_redir **cmd, t_redir *new);
+void redir_check(t_cmd *cmd, t_token *token);
+t_redir *redir_setup(t_redir *redir, t_token *token);
+t_redir	*redir_create(t_token *token);
 
 //built-in
 void	 echo_command(char **args);

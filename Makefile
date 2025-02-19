@@ -12,6 +12,7 @@ SRCS =	src/main.c \
 		src/list_utils/split_sep.c \
 		src/list_utils/split_sep2.c \
 		src/list_utils/cmd_list.c \
+		src/list_utils/redir_list.c \
 		src/built-in/echo.c \
 		src/parsing/prompt.c \
 		src/built-in/cd.c \
