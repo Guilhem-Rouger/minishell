@@ -7,7 +7,7 @@ t_cmd	*cmd_create(t_token *token)
 	new = ft_calloc(sizeof(t_cmd), 1);
 	if (!new)
 		return (NULL);
-	new->cmd = cmd_join(new, token);
+	cmd_join(new, token);
 	new->redir = FALSE;
 	new->out_file = -1;
 	new->in_file = -1;

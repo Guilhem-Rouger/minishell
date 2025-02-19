@@ -104,8 +104,6 @@ bool	parsing(char *line, t_data *data)
 		return (FALSE);
 	if (!token_verif(data->token))
 		return (FALSE);
-	if(!cmd_setup(data->token, data))
-		return (FALSE);
 	count_pipe(line, data);
 	count_operator(data);
 	data->fd_in = dup(0);

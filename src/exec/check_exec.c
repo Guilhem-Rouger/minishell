@@ -126,7 +126,9 @@ bool	task_cmd(t_data *data)
 		return (FALSE);
 	if (!setup_tabarg(data))
 		return (FALSE);
-	print_data(data); // print les données de la structure data
+	if(!cmd_setup(data->token, data))
+		return (FALSE);
+	//print_data(data); // print les données de la structure data
 	if (data->pipe_nbr == 0 && !exec_cmd(data, data->token))
 		return (FALSE);
 	if (data->pipe_nbr != 0 && !exec_pipe(data, data->token))

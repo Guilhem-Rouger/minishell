@@ -1,12 +1,37 @@
-{ 
-     leak readline 
-     Memcheck:Leak
-     ... 
-     fun:readline 
- } 
- { 
-     leak add_history 
-     Memcheck:Leak 
-     ... 
-     fun:add_history 
- }
+Line: ls > gg
+File Descriptor In: 3
+File Descriptor Out: 4
+User: guilhem
+Prompt: [93mguilhem[0m@[36mminicoque:[0m/home/guilhem/minishell1$ 
+Pipe Index: 26
+Minishell Path: /home/guilhem/.vscode-server/bin/e54c774e0add60467559eb0d1e229c6452cf8447/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files/Eclipse Adoptium/jdk-17.0.6.10-hotspot/bin:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR:/mnt/c/Users/Guilhem/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/Guilhem/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/MinGW/bin:/snap/bin
+Paths:
+List Paths:
+Number of Pipes: 0
+Number of Operators: 1
+ID Pipe: 0
+Pipe: [32767, -74048]
+Commands:
+  ls
+  >
+  gg
+Tokens:
+  String: ls/bin/ls
+  Type: 6
+  Double Quote: false
+  Single Quote: false
+  Builtin: false
+  Arg0: /bin/ls
+   Path: /bin/ls
+  String: >
+  Type: 3
+  Double Quote: false
+  Single Quote: false
+  Builtin: true
+  Arg1: gg
+   Path: (null)
+  String: gg
+  Type: 7
+  Double Quote: false
+  Single Quote: false
+  Builtin: false

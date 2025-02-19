@@ -34,21 +34,28 @@ void redir_check(t_cmd *cmd, t_token *token)
 {
     t_token *it;
 
-    it = token;
+    if (token->next)
+        it = token->next;
+    else
+    {
+        cmd->redir = FALSE;
+        return ;
+    }
     while (it && it->type != PIPE)
     {
-        if (token->next->str[0] == '>')
+        if (token->str[0] == '>')
 	    {
     	    cmd->out_file = operator_choice(token->next->arg, &cmd->out_file);
 		    cmd->redir = TRUE;
 	    }
-	    else if (token->next->str[0] == '<')
+	    else if (token->str[0] == '<')
 	    {
     	    cmd->in_file = operator_choice(token->next->arg, &cmd->in_file);
 		    cmd->redir = TRUE;
 	    }
         else
             cmd->redir = FALSE;
+        it = it->next;
     }
     return ;
 }
