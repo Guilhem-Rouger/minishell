@@ -88,7 +88,7 @@ void	setup_arg(t_token *token)
 	arg = ft_calloc(sizeof(char *), len + 1);
 	i = 1;
 	if (token->builtins == FALSE)
-		arg[0] = ft_strdup(token->path);
+		arg[0] = ft_strdup(token->str);
 	else
 		arg[0] = ft_strdup(token->str);
 	while (len > i && (it->type == ARG || it->type == PARAM))
