@@ -61,13 +61,31 @@ void print_data(t_data *data) {
         printf("  Double Quote: %s\n", token->dq ? "true" : "false");
         printf("  Single Quote: %s\n", token->sq ? "true" : "false");
         printf("  Builtin: %s\n", token->builtins ? "true" : "false");
-        while (token->arg[i])
+        if (token->arg)
         {
-            printf("  Arg%d: %s\n", i, token->arg[i]);
-            i++;
+            while (token->arg[i])
+            {
+                printf("  Arg%d: %s\n", i, token->arg[i]);
+                i++;
+            }
         }
         printf("   Path: %s\n", token->path);
         token = token->next;
+    }
+
+    printf("CMD:\n");
+    t_cmd *cmdd = data->cmd;
+    i = 0;
+    while (cmdd) {
+        i = 0;
+        printf("  String: %s\n", cmdd->cmd);
+        printf("  Builtin: %s\n", cmdd->is_built ? "true" : "false");
+        while (cmdd->argv[i])
+        {
+            printf("  Arg%d: %s\n", i, cmdd->argv[i]);
+            i++;
+        }
+        cmdd = cmdd->next;
     }
 
 

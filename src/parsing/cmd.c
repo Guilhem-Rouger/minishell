@@ -9,7 +9,7 @@ bool cmd_setup(t_token *token, t_data *data)
     while (it)
     {  
         if (it->type == CMD)
-            cmd_add_back(&(data->cmd), cmd_create(token));
+            cmd_add_back(&(data->cmd), cmd_create(it));
         it = it->next;
     }
     return (TRUE);
@@ -66,11 +66,12 @@ void cmd_join(t_cmd *cmd, t_token *token)
     char *temp;
     int i;
 
-    i = 0;
-    temp = token->str;
+    i = 1;
+    temp = ft_strdup(token->arg[0]);
     
     while (token->arg[i])
     {
+        temp = ft_strjoin(temp, " ");
         temp = ft_strjoin(temp, token->arg[i]);
         i++;
     }
